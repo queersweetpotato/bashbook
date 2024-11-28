@@ -5,30 +5,12 @@ if [ ! $# -eq 1 ]; then
 fi
 
 id = $1
-
 echo "Accepted Commands: {create|add|post|display}"
 while true; do #loops infinitely
-read request #reads user input
+  read request #reads user input
   command=$(cut -f1 -d ' ' <<< $request)
   arguments=$(cut -f1 -d ' ' --complement <<< $request)
-  #splits the request to the server to a command used
-  #in the switch case and arguments to be passed to the selected
-  #command.
-  case "$command" in
-    create)
-      ./create.sh $id $arguments
-      ;;
-    add)
-      ./add_friend.sh $id $arguments
-      ;;
-    post)
-      ./post_messages.sh $id $arguments
-      ;;
-    display)
-      ./display_wall.sh $id $arguments
-      ;;
-    *)
-    echo "Accepted Commands: {create|add|post|display}"
-  esac
+  echo $command $id $arguments > $id_pipe #this is supposed to send the arguments through a pipe to be received from server.sh, I'm not sure if this works???
+  #smth that reads the output of server.sh and gives user-friendly output accordingly
 done
  
