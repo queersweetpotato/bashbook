@@ -9,7 +9,7 @@ while true; do #loops infinitely
   #command.
   case "$command" in
     create)
-      ./create.sh ${arguments[@]}
+      ./create.sh ${arguments[@]} 
       ;;
     add)
       ./add_friend.sh ${arguments[@]}
@@ -19,9 +19,9 @@ while true; do #loops infinitely
       ;;
     display)
       ./display_wall.sh ${arguments[@]}
-      ;;
+      ;; 
     *)
-      echo "Accepted Commands: {create|add|post|display}"
- esac
+    esac
+  echo "Accepted Commands: {create|add|post|display}"
 done
 
