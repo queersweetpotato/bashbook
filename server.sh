@@ -1,7 +1,7 @@
 #!/bin/bash
-echo "Accepted Commands: {create|add|post|display}"
 while true; do #loops infinitely
-  read -a arguments #reads user input
+  
+  read -a arguments < ty_pipe
   command=${arguments[0]}
   unset arguments[0]
   #splits the request to the server to a command used
@@ -22,6 +22,5 @@ while true; do #loops infinitely
       ;; 
     *)
     esac
-  echo "Accepted Commands: {create|add|post|display}"
-done
+  done
 

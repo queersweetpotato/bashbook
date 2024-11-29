@@ -12,7 +12,7 @@ while true; do #loops infinitely
   command[1]=$id
   unset arguments[0]
   input+=( ${command[@]} ${arguments[@]} )
-  echo $input[@]} > $id_pipe #this is supposed to send the arguments through a pipe to be received from server.sh, I'm not sure if this works???
+  echo ${input[@]} > ty_pipe #this is supposed to send the arguments through a pipe to be received from server.sh, I'm not sure if this works???
   #smth that reads the output of server.sh and gives user-friendly output accordingly
 done
  
