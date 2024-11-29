@@ -2,8 +2,8 @@
 echo "Accepted Commands: {create|add|post|display}"
 while true; do #loops infinitely
   read request #reads user input
-  command=$(cut -f1 -d ' ' <<< $request)
-  arguments=$(cut -f1 -d ' ' --complement <<< $request)
+  command=$(cut -d ' ' -f1 < $request)
+  arguments=$(cut -d ' ' -f1 --complement < $request)
   #splits the request to the server to a command used
   #in the switch case and arguments to be passed to the selected
   #command.
