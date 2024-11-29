@@ -1,24 +1,24 @@
 #!/bin/bash
 echo "Accepted Commands: {create|add|post|display}"
 while true; do #loops infinitely
-  read request #reads user input
-  command=$(cut -d ' ' -f1 < $request)
-  arguments=$(cut -d ' ' -f1 --complement < $request)
+  read -a arguments #reads user input
+  command=${arguments[0]}
+  unset arguments[0]
   #splits the request to the server to a command used
   #in the switch case and arguments to be passed to the selected
   #command.
   case "$command" in
     create)
-      ./create.sh $arguments
+      ./create.sh ${arguments[@]}
       ;;
     add)
-      ./add_friend.sh $arguments
+      ./add_friend.sh ${arguments[@]}
       ;;
     post)
-      ./post_messages.sh $arguments
+      ./post_messages.sh ${arguments[@]}
       ;;
     display)
-      ./display_wall.sh $arguments
+      ./display_wall.sh ${arguments[@]}
       ;;
     *)
       echo "Accepted Commands: {create|add|post|display}"
