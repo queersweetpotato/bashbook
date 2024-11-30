@@ -16,6 +16,43 @@ while true; do #loops infinitely
   input+=( ${command[@]} ${arguments[@]} ) #create new array combining command and arguments
   echo ${input[@]} > user_pipe  #send this to server.sh through user_pipe
   read response < server_pipe #retrieve the output from server.sh
-  echo $response
+  #echo $response
+  case "$response" in
+    "nok: user already exists")
+      echo "ERROR: user already exists"
+      ;;
+    "ok: user created!")
+      echo "SUCCESS: user created!"
+      ;;
+    "nok: user '$id' does not exist")
+      echo "ERROR: user '$id' does not exist"
+      ;;
+    #"nok: friend '$friend' does not exist")
+      #echo "ERROR: user '$friend' does not exist"
+      #;;
+    "ok: friend added!")
+      echo "SUCCESS: friend added!"
+      ;;
+    "nok: user $id does not exist")
+      echo "ERROR: user $id does not exist"
+      ;;
+    #"nok: user ${arguments[2]} does not exist")
+      #echo "ERROR: user ${arguments[2]} does not exist"
+      #;;
+    "ok: message posted!")
+      echo "SUCCESS: message posted!"
+      ;;
+    #"nok: users $id and ${arguments[2]} are not friends")
+      #echo "ERROR: users $id and ${arguments[2]} are not friends"
+      #;;
+    "nok: user '$id' does not exist")
+      echo "ERROR:  user '$id' does not exist"
+      ;;
+    #"start_of_file")
+      #cat $id/wall.txt
+      #;;
+    *)
+     ;;
+  esac
 done
  
