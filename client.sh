@@ -5,6 +5,8 @@ if [ ! $# -eq 1 ]; then
 fi
 
 id=$1
+mkfifo ty_pipe
+
 echo "Accepted Commands: {create|add|post|display}"
 while true; do #loops infinitely
   read -a arguments #reads user input
@@ -12,7 +14,8 @@ while true; do #loops infinitely
   command[1]=$id
   unset arguments[0]
   input+=( ${command[@]} ${arguments[@]} )
-  echo ${input[@]} > ty_pipe #this is supposed to send the arguments through a pipe to be received from server.sh, I'm not sure if this works???
-  #smth that reads the output of server.sh and gives user-friendly output accordingly
+  echo ${input[@]} > ty_pipe  
+  read response < server_pipe
+  echo $response
 done
- 
+rm ty_pipe 

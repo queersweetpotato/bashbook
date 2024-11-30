@@ -1,6 +1,8 @@
 #!/bin/bash
-while true; do #loops infinitely
-  
+
+mkfifo server_pipe
+
+while true; do #loops infinitely  
   read -a arguments < ty_pipe
   command=${arguments[0]}
   unset arguments[0]
@@ -9,18 +11,18 @@ while true; do #loops infinitely
   #command.
   case "$command" in
     create)
-      ./create.sh ${arguments[@]} 
+      ./create.sh ${arguments[@]} > server_pipe 
       ;;
     add)
-      ./add_friend.sh ${arguments[@]}
+      ./add_friend.sh ${arguments[@]} > server_pipe
       ;;
     post)
-      ./post_messages.sh ${arguments[@]}
+      ./post_messages.sh ${arguments[@]} > server_pipe
       ;;
     display)
-      ./display_wall.sh ${arguments[@]}
+      ./display_wall.sh ${arguments[@]} > server_pipe
       ;; 
     *)
     esac
   done
-
+rm server_pipe
