@@ -7,8 +7,8 @@ fi
 id=$1
 mkfifo user_pipe
 
-echo "Accepted Commands: {create|add|post|display}"
 while true; do #loops infinitely
+  echo "Accepted Commands: {create|add|post|display}"
   read -a arguments #reads user input as an array
   command=${arguments[0]} #create array command that stores the innputted comand
   command[1]=$id #add the id as the next field in the array
