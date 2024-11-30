@@ -7,12 +7,12 @@ if [ $# -lt 3 ]; then
   exit 1
 fi
 
-if [ ! -d '$sender' ]; then
+if [ ! -d $sender ]; then
   echo nok: user $sender does not exist
   exit 1
 fi
 
-if [ ! -d '$receiver' ]; then
+if [ ! -d $receiver ]; then
   echo nok: user $receiver does not exist
   exit 1
 fi

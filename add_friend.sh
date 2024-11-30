@@ -7,12 +7,12 @@ if [ $# -lt 2 ] || [ $# -gt 2 ]; then
   exit 1
 fi
 
-if  [ ! -d '$id' ]; then
+if  [ ! -d $id ]; then
   echo "nok: user '$id' does not exist"
   exit 1
 fi
 
-if [ ! -d '$friend' ]; then
+if [ ! -d $friend ]; then
   echo "nok: friend '$friend' does not exist"
   exit 1
 fi
