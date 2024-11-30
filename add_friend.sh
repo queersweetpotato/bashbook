@@ -7,7 +7,7 @@ if [ $# -lt 2 ] || [ $# -gt 2 ]; then
   exit 1
 fi
 
-if  [ ! -d '$user' ]; then
+if  [ ! -d '$id' ]; then
   echo "nok: user '$id' does not exist"
   exit 1
 fi
