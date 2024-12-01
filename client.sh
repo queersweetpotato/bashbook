@@ -5,7 +5,7 @@ if [ ! $# -eq 1 ]; then
 fi
 
 id=$1
-mkfifo user_pipe
+mkfifo server_pipe
 
 while true; do #loops infinitely
   echo "Accepted Commands: {create|add|post|display}"
@@ -14,10 +14,10 @@ while true; do #loops infinitely
   command[1]=$id #add the id as the next field in the array
   unset arguments[0] #remove the command from the array arguments
   input+=( ${command[@]} ${arguments[@]} ) #create new array combining command and arguments
-  echo ${input[@]} > user_pipe  #send this to server.sh through user_pipe
-  read response < server_pipe #retrieve the output from server.sh
-  echo $response
-  echo ${input[2]}
+  echo ${input[@]} > server_pipe  #send this to server.sh through user_pipe
+  read response <<< $id_pipe #retrieve the output from server.sh
+  echo $response #for testing
+  echo ${input[2]} #for testing
   case "$response" in
     "nok: user already exists")
       echo "ERROR: user already exists"
@@ -31,9 +31,9 @@ while true; do #loops infinitely
     "ok: friend added!")
       echo "SUCCESS: friend added!"
       ;;
-    "nok: user '${input[2]}' does not exist")
-      echo "ERROR: user '${input[2]}' does not exist"
-      ;;
+    #"nok: user '${input[2]}' does not exist")
+      #echo "ERROR: user '${input[2]}' does not exist"
+      #;;
     "ok: message posted!")
       echo "SUCCESS: message posted!"
       ;;
