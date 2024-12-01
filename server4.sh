@@ -1,5 +1,5 @@
 #!/bin/bash
-trap "rm -f server_pipe" EXIT
+trap "rm -f server_pipe ; exit 0" SIGINT #closes pipe on interrupt signal (control c)
 
 if [[ ! -p server_pipe ]] then
     mkfifo server_pipe

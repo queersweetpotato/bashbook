@@ -5,7 +5,7 @@ if [ ! $# -eq 1 ]; then #insufficent args
 fi
 
 id=$1
-trap "rm -f ${id}_pipe" EXIT #close pipe on exit
+trap "rm -f ${id}_pipe ; exit 0" SIGINT #close pipe on interupt signal (control c) and exits with success code
 
   if [[ ! -p ${id}_pipe ]] then #only makes pipe if one doesn't exit (avoids annoying error message)
     mkfifo ${id}_pipe
@@ -21,7 +21,7 @@ while true; do #loops infinitely
   input=( ${command[@]} ${arguments[@]} ) #create new array combining command and arguments
 
   echo ${input[@]} > server_pipe  #send this to server.sh through user_pipe
-  
+
   read response < ${id}_pipe #receive the output
   case "$response" in
     "nok: user already exists")
