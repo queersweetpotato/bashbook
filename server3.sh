@@ -1,5 +1,10 @@
 #!/bin/bash
 
+trap "rm -f server_pipe" EXIT
+if [[ ! -p server_pipe ]]; then
+    mkfifo server_pipe
+fi
+
 mkfifo user_pipe
 
 while true; do #loops infinitely  
