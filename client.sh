@@ -31,18 +31,18 @@ while true; do #loops infinitely
     "ok: friend added!")
       echo "SUCCESS: friend added!"
       ;;
-    #"nok: user '${input[2]}' does not exist")
-      #echo "ERROR: user '${input[2]}' does not exist"
-      #;;
+    "nok: user '${input[2]}' does not exist")
+      echo "ERROR: user ${input[2]} does not exist"
+      ;;
     "ok: message posted!")
       echo "SUCCESS: message posted!"
       ;;
-    #"nok: users $id and ${input[2]} are not friends")
-      #echo "ERROR: users $id and ${input[2]} are not friends"
-      #;;
-    #"start_of_file")
-      #cat $id/wall.txt
-      #;;
+    "nok: users $id and ${input[2]} are not friends")
+      echo "ERROR: users $id and ${input[2]} are not friends"
+      ;;
+    "start_of_file")
+      cat $id/wall.txt
+      ;;
     *)
      ;;
   esac
