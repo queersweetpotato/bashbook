@@ -23,5 +23,5 @@ while true; do #loops infinitely
       ;; 
     *)
     esac
-  done
+done
 

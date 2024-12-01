@@ -13,8 +13,8 @@ while true; do #loops infinitely
   command=${arguments[0]} #create array command that stores the inputted comand
   command[1]=$id #add the id as the next field in the array
   unset arguments[0] #remove the command from the array arguments
-  input+=( ${command[@]} ${arguments[@]} ) #create new array combining command and arguments
-  echo "I am sending input"
+  input=( ${command[@]} ${arguments[@]} ) #create new array combining command and arguments
+  echo "I am sending the command $command"
   echo ${input[@]} > server_pipe  #send this to server.sh through user_pipe
   echo "I have sent input"
   echo ${id}_pipe
