@@ -1,23 +1,27 @@
 #!/bin/bash
 
-if [ ! $# -eq 1 ]; then
+if [ ! $# -eq 1 ]; then #insufficent args
   exit 1
 fi
 
 id=$1
-mkfifo server_pipe
+trap "rm -f ${id}_pipe" EXIT #close pipe on exit
+
+  if [[ ! -p ${id}_pipe ]] then #only makes pipe if one doesn't exit (avoids annoying error message)
+    mkfifo ${id}_pipe
+  fi
 
 while true; do #loops infinitely
   echo "Accepted Commands: {create|add|post|display}"
   read -a arguments #reads user input as an array
+
   command=${arguments[0]} #create array command that stores the inputted comand
   command[1]=$id #add the id as the next field in the array
   unset arguments[0] #remove the command from the array arguments
   input=( ${command[@]} ${arguments[@]} ) #create new array combining command and arguments
-  echo "I am sending the command $command"
+
   echo ${input[@]} > server_pipe  #send this to server.sh through user_pipe
-  echo "I have sent input"
-  echo ${id}_pipe
+  
   read response < ${id}_pipe #receive the output
   case "$response" in
     "nok: user already exists")

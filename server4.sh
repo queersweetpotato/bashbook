@@ -1,12 +1,16 @@
 #!/bin/bash
+trap "rm -f server_pipe" EXIT
+
+if [[ ! -p server_pipe ]] then
+    mkfifo server_pipe
+  fi
 
 while true; do #loops infinitely  
   read -a arguments < server_pipe #receive input as an array from client.sh
-  echo "I received the command ${arguments[0]}"
   command=${arguments[0]}
   id=${arguments[1]}
   unset arguments[0]
-  mkfifo ${id}_pipe
+
   #splits the request to the server to a command used in the switch case and arguments to be passed to the selected command.
   case "$command" in
     create)
