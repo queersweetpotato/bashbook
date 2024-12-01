@@ -5,8 +5,17 @@ fi
 
 id=$1
 
-echo new $id > server.pipe
+trap "rm -f $id.pipe" EXIT
+if [[ ! -p $id.pipe ]]; then
+    mkfifo $id.pipe
+fi
+
 while true; do
-	read line
-	echo line > server.pipe
+	read -a line
+	output=( ${id[@]} ${line[@]} )
+	echo ${output[@]}
+	echo ${output[@]} > server.pipe
+
+	read input < $id.pipe
+	echo $input
 done
