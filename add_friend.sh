@@ -13,7 +13,7 @@ if  [ ! -d $id ]; then
 fi
 
 if [ ! -d $friend ]; then
-  echo "nok: friend '$friend' does not exist"
+  echo "nok: user '$friend' does not exist"
   exit 1
 fi
 

@@ -8,23 +8,22 @@ if [ $# -lt 3 ]; then
 fi
 
 if [ ! -d $sender ]; then
-  echo nok: user $sender does not exist
+  echo nok: user '$sender' does not exist
   exit 1
 fi
 
 if [ ! -d $receiver ]; then
-  echo nok: user $receiver does not exist
+  echo nok: user '$receiver' does not exist
   exit 1
 fi
 
-input=$receiver/friends.txt
-while read line; do
-  if [ $line==$sender ]; then
-    shift 2
-    echo "$sender: $@" >> $receiver/wall.txt
-    echo ok: message posted! 
-    exit 0
-  fi
-done < $input
-echo nok: users $sender and $receiver are not friends
-exit 1      
+if ! grep "^$sender" "$receiver"/friends.txt > /dev/null; then
+  echo nok: users $sender and $receiver are not friends
+  exit 1
+fi
+
+shift 2
+echo "$sender: $@" >> $receiver/wall.txt
+echo ok: message posted! 
+exit 0
+    
