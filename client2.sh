@@ -5,7 +5,6 @@ if [ ! $# -eq 1 ]; then
 fi
 
 id=$1
-mkfifo user_pipe
 
 while true; do #loops infinitely
   echo "Accepted Commands: {create|add|post|display}"
