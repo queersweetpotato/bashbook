@@ -9,7 +9,7 @@ fi
 resource=$1
 lock=${resource}_lock
 
-while ! ln -s "$resource" "$lock"; do
+while ! ln -s "$resource" "$lock" 2> /dev/null; do
 	sleep 1
 done
 
