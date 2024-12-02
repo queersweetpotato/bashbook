@@ -3,7 +3,7 @@
 id=$1
 friend=$2
 
-trap "./release.sh '$id/friends.txt'" EXIT
+trap "./release.sh '$id/friends.txt'" EXIT #lock is released on exist so that none remain acquired if program is closed before finishing
 
 if [ $# -lt 2 ] || [ $# -gt 2 ]; then
   exit 1
