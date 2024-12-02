@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ $# -gt 1 ]; then
+if [ $# -gt 1 ]; then #too many arguments
   exit 1
 fi
 

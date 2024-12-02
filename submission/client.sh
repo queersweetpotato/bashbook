@@ -23,7 +23,7 @@ while true; do #loops infinitely
   echo ${input[@]} > server_pipe  #send this to server.sh through user_pipe
 
   read response < ${id}_pipe #receive the output
-  case "$response" in
+  case "$response" in #check the response and give nicely formatted output accordingly
     "nok: user already exists")
       echo "ERROR: user already exists"
       ;;

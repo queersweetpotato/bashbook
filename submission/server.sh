@@ -10,9 +10,8 @@ while true; do #loops infinitely
   command=${arguments[0]}
   id=${arguments[1]}
   unset arguments[0]
-
   #splits the request to the server to a command used in the switch case and arguments to be passed to the selected command.
-  case "$command" in
+  case "$command" in #check which command was used --> call the correct script
     create)
       ./create.sh ${arguments[@]} > ${id}_pipe & #send output to client.sh
       ;;
