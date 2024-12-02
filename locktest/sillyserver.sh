@@ -1,5 +1,13 @@
 #!/bin/bash
 
-#runs simple commands in parallel, to test lock functionality
-#these commands will have a long sleep time and many printouts so that it's obvious if locks are working or not
-#locks will try to share resource.txt without race conditions
+#runs many instances of command.sh (which all manipulate resource.txt) in parallel
+
+trap "rm -f sillyserver_pipe" EXIT
+if [[ ! -p sillyserver_pipe ]]
+	mkfifo sillyserver_pipe
+fi
+
+while true; do
+	read input < sillyserver_pipe
+	./command.sh $input
+done
