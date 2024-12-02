@@ -1,5 +1,5 @@
 # bashbook
-computer systems assignment
+
 This assignment is supposed to mimic a social media application such as Facebook. In order to use it, one should first give themselves proper permissions for all scripts. Then start running server.sh (no arguments) in one terminal window and client.sh (one argument; the user ID) in one or more other terminal windows. Input commands into the client terminals to use the application.
 
 
