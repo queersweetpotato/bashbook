@@ -9,7 +9,7 @@ sleeptime=$1
 str=$(cat resource.txt) #reads in file 
 lastchar=${str:0-1} #gets last char
 
-sleep $sleeptime #sleeps here, maximising chance of something else overwriting file before it can write a new char
+#sleep $sleeptime #sleeps here, maximising chance of something else overwriting file before it can write a new char
 
 case $lastchar in #if stored lastchar is 0 write 1, if it is 1 write 0
 	1)
