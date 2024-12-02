@@ -7,7 +7,7 @@ Guide on specific commands:
 
 create - this creates a user. It takes no arguments and must be run before any other commands.
 
-add - this makes two users friends. It takes one command, the ID of the user that the client would like to be friends with.
+add - this makes a user friends with another user. It takes one command, the ID of the user that the client would like to be friends with. Friendship is not symmetrical, so if two users would like to be friends with each other they must each send a friend request. Users can friend themselves if they wish.
 
 post - this posts a message onto a friend's wall. It takes two or more commands, first the ID of the user that the client would like to send a message to, and the remaining arguments are the messages.
 
